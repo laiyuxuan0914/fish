@@ -1,7 +1,7 @@
 PImage gamestart, background, bad, bubble, life, magnet, rush, win, lose;
 PImage fishS, fishM, fishL;
 PImage baddown, badleft, badright, badup;
-PImage rushfish, magnetfish, bubblefish;
+PImage rushfishS, magnetfishS, bubblefishS;
 PFont font;
 
 //gamestate
@@ -30,6 +30,7 @@ float fishX, fishY;
 float bubbleX, bubbleY;
 //rushx,y
 float rushX, rushY;
+
 //magnetx,y
 float magnetX, magnetY;
 //life
@@ -64,9 +65,9 @@ void setup() {
   fishS=loadImage("img/fishS.png");
   fishM=loadImage("img/fishM.png");
   fishL=loadImage("img/fishL.png");
-  rushfish=loadImage("img/rushfish.png");
-  magnetfish=loadImage("img/magnetfish.png");
-  bubblefish=loadImage("img/bubblefish.png");
+  rushfishS=loadImage("img/rushfishS.png");
+  magnetfishS=loadImage("img/magnetfishS.png");
+  bubblefishS=loadImage("img/bobfishS.png");
   win=loadImage("img/win.jpg");
   lose=loadImage("img/lose.jpg");
   //fish start place
@@ -79,15 +80,30 @@ void setup() {
   }
 
   //bubble init place
-
-
+   bubbles=new Bubble[1];
+   for (int i = 0; i<bubble.length; i++){
+     bubbles[i] = new Bubble(random(size/2),random(size/2))
+   }
+    
+    image(bubble,bubbleX,bubbleY);
+  //bubbleX=
+    bubbleX = random(width-150);
+  //bubbleY=
+    bubbleY = random(height-150);
+  
   //rush init place
+    image(rush,rushX,rushY);
   //rushX=
+    rushX = random(width-150);
   //rushY=
+    rushY = random(height-150);
 
-  //magnet init place
+  //magnet init place   
+    image(magnet,magnetX,magnetY);
   //magnetX=
-  // magnetY=
+    magnetX = random(width-150);
+  //magnetY=
+    magnetY = random(height-150);
 
   //font
   // font=createFont("font/font.ttf", 56);
@@ -121,12 +137,18 @@ void draw() {
       lights[i].LightColor();
       lights[i].display();
     }
+     //rush
+      image(rush,rushX,rushY);
+      if(fishX >= rushX && fishX + 150 <= rushX + 150
+      && fishY >= rushY && fishY + 150 <= rushY + 150){
+      fishSpeed=15; 
+      
+      }
     //magnet
-
+      image(magnet,magnetX,magnetY);
     //bubble
-
-    //rush
-
+      image(bubble,bubbleX,bubbleY);
+  
     //bad
     for (int i = 0; i<bads.length; i++) {
       bads[i].update();
