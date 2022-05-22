@@ -80,11 +80,7 @@ void setup() {
   }
 
   //bubble init place
-   bubbles=new Bubble[1];
-   for (int i = 0; i<bubble.length; i++){
-     bubbles[i] = new Bubble(random(size/2),random(size/2))
-   }
-    
+   
     image(bubble,bubbleX,bubbleY);
   //bubbleX=
     bubbleX = random(width-150);
