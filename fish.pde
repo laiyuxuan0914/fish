@@ -301,6 +301,7 @@ void drawPoints() {
     }
   }
   }
+  
   //text
   gamePoints = addpoints(points);
   String pointsString=(gamePoints)+"points";
