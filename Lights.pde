@@ -5,11 +5,11 @@ class Lights{
   int lightTransparent = 100;
   int points = 0;
   boolean appears;
-  
+
   void sizes(){
-    lightSize+=0.3;
-    if(lightSize>90){
-      lightSize = 90;
+    lightSize+=0.2;
+    if(lightSize>60){
+      lightSize = 60;
     }
   }
   
@@ -29,7 +29,7 @@ class Lights{
   void initLightColor(){
     lightTransparent=50;
   }
-  
+
   void display(){
     ellipse(lightX,lightY,lightSize,lightSize);
   }
@@ -37,9 +37,10 @@ class Lights{
   void appear(){
     if(animationFrame%60>0){
     appears = true;
-
     }
   }
+  
+
   Lights(){
     for(int i=0; i<10;i++){
     lightX =floor(random(width-1));
