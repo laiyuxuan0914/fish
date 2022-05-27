@@ -77,14 +77,14 @@ void setup() {
   bubblefishS=loadImage("img/bobfishS.png");
   win=loadImage("img/win.jpg");
   lose=loadImage("img/lose.jpg");
-  //fish start place
+  //fish start place INIT PLACE
   fishX=width/2-fishSSize/2;
   fishY=height/2-fishSSize/2;
-  //bad fish init place
+  //bad fish init place INIT PLACE
   bads=new Bad[100];
   badfishReborn();
 
-  //bubble init place
+  //bubble init place INIT PLACE
 
   image(bubble, bubbleX, bubbleY);
   //bubbleX=
@@ -92,14 +92,14 @@ void setup() {
   //bubbleY=
   bubbleY = random(height-150);
 
-  //rush init place
+  //rush init place INIT PLACE
   image(rush, rushX, rushY);
   //rushX=
   rushX = random(width-150);
   //rushY=
   rushY = random(height-150);
 
-  //magnet init place
+  //magnet init place INIT PLACE
   image(magnet, magnetX, magnetY);
   //magnetX=
   magnetX = random(width-150);
@@ -164,7 +164,7 @@ void draw() {
     }
 
 
-    //rush
+    //rush 
     image(rush, rushX, rushY);
     if (fishX >= rushX && fishX + 150 <= rushX + 150
       && fishY >= rushY && fishY + 150 <= rushY + 150) {
@@ -247,46 +247,126 @@ void draw() {
     break;
 
   case GAME_WIN:
-    image(win, 0, 0);
-
-    //to gamerun case
-    if (mousePressed) {
+    
+  image(win,0,0);
+  if (mousePressed) {
       gameState = GAME_RUN;
-      //light restart
-      for (int i = 0; i<lights.length; i++) {
-        gamePoints=0;
-        points=0;
-        lights[i].initSizes();
-        lights[i].initLightColor();
-        lights[i].lightX =floor(random(width-1));
-        lights[i].lightY =floor(random(height-1));
-        fishX=width/2-fishSSize/2;
-        fishY=height/2-fishSSize/2;
-      }
+    Lights [] lights; 
+    lights = new Lights[10];
+      
+      Bad[]bads;
+      bads=new Bad[100];
+  fishHealth=3;
+gamePoints=GAME_INIT_POINTS;
 
-      //badfish restart
-      badfishReborn();
-    }
-    break;
 
-  case GAME_OVER:
+badtime=0;
 
+time =0;
+min = 0;
+sec = 0;
+animationFrame = 0;
+points = 0;
+isHit =false;
+timer = 0;
+
+ fishX=width/2-fishSSize/2;
+  fishY=height/2-fishSSize/2;
+  
+  
+  bubbleX = random(width-150);
+  //bubbleY=
+  bubbleY = random(height-150);
+   //rushX=
+  rushX = random(width-150);
+  //rushY=
+  rushY = random(height-150);
+    //magnetX=
+  magnetX = random(width-150);
+  //magnetY=
+  magnetY = random(height-150);
+  badtime++;
+      badtime=0;
+      
+      fishSize = fishS;
+      gamePoints=0;
+      fishX=width/2-fishSSize/2;
+      fishY=height/2-fishSSize/2;
+      
     //light restart
     for (int i = 0; i<lights.length; i++) {
       gamePoints=0;
+      lightsON[i] = false;
       points=0;
-      lights[i].initSizes();
-      lights[i].initLightColor();
-      lights[i].lightX =floor(random(width-1));
-      lights[i].lightY =floor(random(height-1));
-      fishX=width/2-fishSSize/2;
-      fishY=height/2-fishSSize/2;
+     
+      
     }
     //badfish restart
     badfishReborn();
     break;
   }
-}
+
+  case GAME_OVER:
+  image(lose,0,0);
+  if (mousePressed) {
+      gameState = GAME_RUN;
+    Lights [] lights; 
+    lights = new Lights[10];
+      
+      Bad[]bads;
+      bads=new Bad[100];
+  fishHealth=3;
+gamePoints=GAME_INIT_POINTS;
+
+
+badtime=0;
+
+time =0;
+min = 0;
+sec = 0;
+animationFrame = 0;
+points = 0;
+isHit =false;
+timer = 0;
+
+ fishX=width/2-fishSSize/2;
+  fishY=height/2-fishSSize/2;
+  
+  
+  bubbleX = random(width-150);
+  //bubbleY=
+  bubbleY = random(height-150);
+   //rushX=
+  rushX = random(width-150);
+  //rushY=
+  rushY = random(height-150);
+    //magnetX=
+  magnetX = random(width-150);
+  //magnetY=
+  magnetY = random(height-150);
+ 
+      
+      badtime++;
+      badtime=0;
+      
+      fishSize = fishS;
+      gamePoints=0;
+      fishX=width/2-fishSSize/2;
+      fishY=height/2-fishSSize/2;
+      
+    //light restart
+    for (int i = 0; i<lights.length; i++) {
+      gamePoints=0;
+      lightsON[i] = false;
+      points=0;
+     
+      
+    }
+    //badfish restart
+    badfishReborn();
+    break;
+  }}}
+
 
 void badfishReborn() {
   for (int i=0; i<100; i++) {
@@ -310,6 +390,8 @@ void drawPoints() {
     if (lights[i].lightSize==60) {
       if (lightsON[i]==true) {
         points=0;
+        
+        lightsTimer[i]=floor(random(60));
         lights[i].initSizes();
         lights[i].initLightColor();
         lights[i].lightX =floor(random(width-1));
