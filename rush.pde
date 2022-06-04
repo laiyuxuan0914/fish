@@ -1,91 +1,40 @@
-class Rush{ 
+class Rush extends Item {
 
-  boolean isAlive; 
+  int rushTime=0;
+  boolean rushTimeCheck=false;
+  Rush(float x, float y) {
+    super(x, y);
+    isAlive=true;
+    img = rushing;
+  }
 
-  float rushx; 
+  void display() {
+    if (isAlive==true) {
+      image(img, x, y);
+    }
+  }
 
-  float rushy; 
+  void checkCollision() {
+    if (fishX+150 >x&&
+      fishX < x+w&&
+      fishY+150 > y &&
+      fishY < y+h ) {
+      isAlive=false;
+      rushTimeCheck=true;
+      checkTime();
+    }
+  }
 
-  float w=150; 
-
-  float h=150; 
-
- // PImage fishSize = rushfishS; 
-
-  PImage img; 
-
-  //int time = 3000; 
-
- 
-
- 
-
-void display() { 
-
-  if (isAlive==true) { 
-
-    image(img,rushx,rushy); 
-
-  } 
-
-} 
-
- 
-
- void checkCollision() { 
-
- 
-
-   if (isAlive==true) { 
-
-     if (fishX+150 >rushx&&fishX < rushx+w&&fishY+150 > rushy &&fishY < rushy+h ) { 
-
-          isAlive=false; 
-
-         // fishSize = rushfishS; 
-
-          //int currentTime = millis(); 
-
-          fishSpeed=15; 
-
-          //if(currentTime > time){ 
-
-            //fishSpeed=10; 
-
-          //} 
-
-      } 
-
-   } 
-
- } 
-
- 
-
-//void update() { 
-
-  //img=name; 
-
-//}   
-
- 
-
-Rush(){ 
-
-  isAlive=true; 
-
-  rushx = random(width-150); 
-
-  rushy = random(height-150); 
-
-  img = rushing; 
-
-   
-
-}   
-
- 
-
- 
-
-} 
+  void checkTime() {
+    if (rushTimeCheck==true) {
+      rushTime++;
+    }
+    println(rushTime);
+    if (rushTime<180) {
+      fishSpeed=20;
+    } else {
+      fishSpeed=10;
+      rushTimeCheck=false;
+    }
+  }
+}

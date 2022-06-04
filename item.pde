@@ -1,10 +1,16 @@
-class Magnet extends Item {
+class Item {
+  boolean isAlive;
+  float x, y;
+  float w=150;
+  float h=150;
+  PImage img;
 
-  Magnet(float x, float y) {
-    super(x, y);
-    isAlive=true;
-    img = magneting;
+  Item(float x, float y) {
+    isAlive = true;
+    this.x = x;
+    this.y = y;
   }
+
 
   void display() {
     if (isAlive==true) {
@@ -12,15 +18,12 @@ class Magnet extends Item {
     }
   }
 
-
   void checkCollision() {
     if (fishX+150 >x&&
       fishX < x+w&&
       fishY+150 > y &&
       fishY < y+h ) {
       isAlive=false;
-      
     }
   }
-  
 }
