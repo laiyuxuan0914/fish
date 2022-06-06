@@ -19,6 +19,7 @@ class Bad {
 
     if (isOutOfScreen()) {
       isAlive=false;
+     
       direction=-1;
     }
 
@@ -27,7 +28,11 @@ class Bad {
       fishY+150 > y &&
       fishY < y+h ) {
       isAlive=false;
-      fishHealth--;
+      if (itemImage==1) {
+        itemImage =0;
+      } else {
+        fishHealth--;
+      }
       direction=-1;
     }
   }
