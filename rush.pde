@@ -20,6 +20,7 @@ class Rush extends Item {
       fishY+150 > y &&
       fishY < y+h ) {
       isAlive=false;
+      itemImage=3;
       rushTimeCheck=true;
       checkTime();
     }
