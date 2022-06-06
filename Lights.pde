@@ -17,6 +17,25 @@ class Lights{
     lightSize=0;
   }
   
+ class Lights{
+  float lightSize = 0;
+  int lightX;
+  int lightY;
+  int lightTransparent = 100;
+  int points = 0;
+  boolean appears;
+
+  void sizes(){
+    lightSize+=0.2;
+    if(lightSize>60){
+      lightSize = 60;
+    }
+  }
+  
+  void initSizes(){
+    lightSize=0;
+  }
+  
   void LightColor(){
     lightTransparent++;
     if(lightTransparent>=200){
@@ -51,5 +70,3 @@ class Lights{
 }
 
   
-
-
