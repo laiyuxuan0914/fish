@@ -4,7 +4,7 @@ class Item {
   float w=150;
   float h=150;
   PImage img;
-
+  PImage fishChange;
   Item(float x, float y) {
     isAlive = true;
     this.x = x;
@@ -17,6 +17,10 @@ class Item {
       image(img, x, y);
     }
   }
+  
+  void fishChange(){
+      fishSize = fishChange; 
+  }
 
   void checkCollision() {
     if (fishX+150 >x&&
@@ -26,4 +30,5 @@ class Item {
       isAlive=false;
     }
   }
+
 }
