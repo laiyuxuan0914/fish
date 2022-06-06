@@ -19,8 +19,11 @@ class Magnet extends Item {
       fishY+150 > y &&
       fishY < y+h ) {
       isAlive=false;
-      
+      itemImage=2;
+      magnetTimeOn = true;
     }
   }
+  
+
   
 }
